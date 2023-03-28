@@ -12,7 +12,9 @@ function NameInputValue(props: GridFilterInputValueProps) {
 
   React.useImperativeHandle(focusElementRef, () => ({
     focus: () => {
-      nameRef.current.querySelector(`input[value=""]`).focus();
+      nameRef.current
+        .querySelector(`input[value="${item.value ? String(item.value) : ""}"]`)
+        .focus();
     },
   }));
 
@@ -35,6 +37,7 @@ function NameInputValue(props: GridFilterInputValueProps) {
         name="custom-name-filter-operator"
         placeholder="Filter value"
         onChange={handleNameFilterChange}
+        value={item.value || ""}
         ref={nameRef}
       />
     </Box>
